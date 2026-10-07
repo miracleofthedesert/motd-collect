@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Miracle of the Desert</title>
+  <meta name="description" content="Redirecting to Miracle of the Desert." />
+  <noscript><meta http-equiv="refresh" content="1;url=https://www.miracleofthedesert.com/" /></noscript>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #ffffff;
+      --text: #111111;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .screen {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    #loadingScreen {
+      text-align: center;
+    }
+
+    .spinner {
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 18px;
+      border: 4px solid #e6e6e6;
+      border-top: 4px solid #333333;
+      border-radius: 50%;
+      animation: spin .9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 16px;
+      color: #555555;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .spinner { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="loadingScreen" class="screen" aria-live="polite" aria-label="Loading">
+    <div>
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="loading-text">Loading…</div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      // Preserve incoming ad parameters, including repeated query keys.
+      const destination = new URL('https://www.miracleofthedesert.com/');
+      destination.search = window.location.search;
+      destination.hash = window.location.hash;
+
+      // Keep the loading screen visible for one second, then continue.
+      setTimeout(function () {
+        window.location.replace(destination.toString());
+      }, 1000);
+    })();
+  </script>
+
+</body>
+</html>
