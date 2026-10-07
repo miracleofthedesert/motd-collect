@@ -4,15 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Miracle of the Desert</title>
-  <meta name="description" content="Continue to Miracle of the Desert." />
+  <meta name="description" content="Redirecting to Miracle of the Desert." />
+  <noscript><meta http-equiv="refresh" content="1;url=https://www.miracleofthedesert.com/" /></noscript>
   <style>
     :root {
       color-scheme: light;
       --bg: #ffffff;
       --text: #111111;
-      --muted: #666666;
-      --button: #111111;
-      --button-text: #ffffff;
     }
 
     * { box-sizing: border-box; }
@@ -58,60 +56,8 @@
       color: #555555;
     }
 
-    #landingPage {
-      display: none;
-      opacity: 0;
-      transition: opacity .18s ease;
-    }
-
-    #landingPage.visible {
-      display: grid;
-      opacity: 1;
-    }
-
-    .card {
-      width: min(760px, 100%);
-      text-align: center;
-    }
-
-    .brand {
-      font-size: clamp(42px, 7vw, 72px);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      margin-bottom: 22px;
-    }
-
-    .copy {
-      font-size: clamp(18px, 2.4vw, 28px);
-      line-height: 1.35;
-      color: var(--muted);
-      margin: 0 auto 34px;
-      max-width: 700px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 72px;
-      padding: 0 44px;
-      border-radius: 14px;
-      background: var(--button);
-      color: var(--button-text);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: clamp(18px, 2.2vw, 25px);
-      transition: transform .15s ease, opacity .15s ease;
-    }
-
-    .button:hover { opacity: .9; }
-    .button:active { transform: translateY(1px); }
-
-    .note {
-      margin-top: 22px;
-      font-size: clamp(14px, 1.8vw, 18px);
-      line-height: 1.45;
-      color: #8a8a8a;
+    @media (prefers-reduced-motion: reduce) {
+      .spinner { animation: none; }
     }
   </style>
 </head>
@@ -124,44 +70,16 @@
     </div>
   </section>
 
-  <main id="landingPage" class="screen">
-    <div class="card">
-      <div class="brand">Miracle of the Desert</div>
-      <p class="copy">Continue to the official Miracle of the Desert website.</p>
-
-      <a id="continueButton"
-         class="button"
-         href="https://www.miracleofthedesert.com/"
-         rel="noopener">
-        Visit Miracle of the Desert
-      </a>
-
-      <div class="note">You’ll be taken to miracleofthedesert.com.</div>
-    </div>
-  </main>
-
   <script>
     (function () {
-      const loadingScreen = document.getElementById('loadingScreen');
-      const landingPage = document.getElementById('landingPage');
-      const button = document.getElementById('continueButton');
+      // Preserve incoming ad parameters, including repeated query keys.
+      const destination = new URL('https://www.miracleofthedesert.com/');
+      destination.search = window.location.search;
+      destination.hash = window.location.hash;
 
-      // Preserve incoming query parameters (for example UTM tags)
-      // when the visitor clicks through to the main site.
-      const sourceParams = new URLSearchParams(window.location.search);
-      const destination = new URL(button.href);
-
-      sourceParams.forEach((value, key) => {
-        destination.searchParams.set(key, value);
-      });
-
-      button.href = destination.toString();
-
-      // Show only the loading screen for exactly one second,
-      // then reveal the landing page with the button.
+      // Keep the loading screen visible for one second, then continue.
       setTimeout(function () {
-        loadingScreen.style.display = 'none';
-        landingPage.classList.add('visible');
+        window.location.replace(destination.toString());
       }, 1000);
     })();
   </script>
